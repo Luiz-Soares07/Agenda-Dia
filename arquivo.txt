@@ -1,0 +1,115 @@
+package Screens;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MenuOpcoesScreen extends JFrame {
+
+    public MenuOpcoesScreen() {
+        super("Opções do Sistema");
+
+        // Define os nomes dos botões
+        String[] opcoes = {"Cadastrar", "Remover", "Visualizar", "Sair"};
+
+        // Cria um painel com um layout de GridLayout
+        JPanel panel = new JPanel(new GridLayout(opcoes.length, 1, 10, 10));
+
+        // Cria e adiciona os botões ao painel
+        for (String opcao : opcoes) {
+            JButton button = new JButton(opcao);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    handleButtonClick(opcao);
+                }
+            });
+            panel.add(button);
+        }
+
+        // Configura o JFrame
+        add(panel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    // Método para lidar com os cliques nos botões
+    private void handleButtonClick(String opcao) {
+        switch (opcao) {
+            case "Cadastrar":
+                new CadastrarScreen(); // Abre a tela de Cadastrar
+                break;
+            case "Remover":
+                new RemoverScreen(); // Abre a tela de Remover
+                break;
+            case "Visualizar":
+                new VisualizarScreen(); // Abre a tela de Visualizar
+                break;
+            case "Sair":
+                System.exit(0); // Encerra a aplicação
+                break;
+        }
+        dispose(); // Fecha a tela atual
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(MenuOpcoesScreen::new);
+    }
+}
+
+// Tela para cadastrar
+class CadastrarScreen extends JFrame {
+    public CadastrarScreen() {
+        super("Cadastrar Tarefa");
+        setLayout(new FlowLayout());
+        add(new JLabel("Tela de Cadastro"));
+        JButton backButton = new JButton("Voltar");
+        backButton.addActionListener(e -> {
+            dispose();
+            new MenuOpcoesScreen(); // Volta para o menu principal
+        });
+        add(backButton);
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
+
+// Tela para remover
+class RemoverScreen extends JFrame {
+    public RemoverScreen() {
+        super("Remover Tarefa");
+        setLayout(new FlowLayout());
+        add(new JLabel("Tela de Remoção"));
+        JButton backButton = new JButton("Voltar");
+        backButton.addActionListener(e -> {
+            dispose();
+            new MenuOpcoesScreen(); // Volta para o menu principal
+        });
+        add(backButton);
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
+
+// Tela para visualizar
+class VisualizarScreen extends JFrame {
+    public VisualizarScreen() {
+        super("Visualizar Tarefas");
+        setLayout(new FlowLayout());
+        add(new JLabel("Tela de Visualização"));
+        JButton backButton = new JButton("Voltar");
+        backButton.addActionListener(e -> {
+            dispose();
+            new MenuOpcoesScreen(); // Volta para o menu principal
+        });
+        add(backButton);
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}

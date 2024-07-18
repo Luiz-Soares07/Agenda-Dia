@@ -1,4 +1,4 @@
-package Screens;
+package views;
 
 import models.User;
 
@@ -37,17 +37,10 @@ public class UserNameScreen extends JFrame{
         panel.add(btnPronto);
 
         add(panel, BorderLayout.CENTER);
-
-        
+ 
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 350);
-
-
-       
-
     }
-    
-    
 }
