@@ -1,0 +1,73 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MainFrame extends JFrame {
+
+    public MainFrame() {
+        super("Sistema de Gerenciamento de Tarefas");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+
+        // Criação dos componentes do Menu Principal
+        JPanel panelMenu = new JPanel(new GridLayout(2, 1));
+        JButton btnEntrar = new JButton("1 - Entrar");
+        JButton btnSair = new JButton("2 - Sair");
+
+        panelMenu.add(btnEntrar);
+        panelMenu.add(btnSair);
+
+        // Adiciona o painel do Menu Principal ao JFrame
+        add(panelMenu, BorderLayout.CENTER);
+
+        // Ação do botão Entrar
+        btnEntrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Remove o painel do Menu Principal
+                remove(panelMenu);
+
+                // Criação dos componentes da Tela de Operações
+                JPanel panelOperacoes = new JPanel(new GridLayout(5, 1));
+                JButton btnCadastrar = new JButton("1 - Cadastrar Tarefa");
+                JButton btnEditar = new JButton("2 - Editar Tarefa");
+                JButton btnRemover = new JButton("3 - Remover Tarefa");
+                JButton btnVisualizar = new JButton("4 - Visualizar Tarefas");
+                JButton btnVoltar = new JButton("5 - Sair");
+
+                panelOperacoes.add(btnCadastrar);
+                panelOperacoes.add(btnEditar);
+                panelOperacoes.add(btnRemover);
+                panelOperacoes.add(btnVisualizar);
+                panelOperacoes.add(btnVoltar);
+
+                // Adiciona o painel da Tela de Operações ao JFrame
+                add(panelOperacoes, BorderLayout.CENTER);
+
+                // Atualiza a interface
+                revalidate();
+                repaint();
+            }
+        });
+
+        // Ação do botão Sair
+        btnSair.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Fecha o JFrame e encerra o programa
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MainFrame(); // Cria e exibe o JFrame principal
+            }
+        });
+    }
+}
