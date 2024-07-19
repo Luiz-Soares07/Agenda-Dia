@@ -10,13 +10,15 @@ public class Task {
     private LocalTime endTime;
     private boolean singleTime;
 
-    public Task(String name, String startTime, String endTime){
+    //Um Construtor para caso tenha um horario de inicio e um horario de fim.
+    public Task(String name, String startTime, String endTime){ 
         this.name = name;
         this.startTime = LocalTime.parse(startTime);
         this.endTime = LocalTime.parse(endTime);
         this.singleTime = false;
     }
 
+    //Um Construtor para caso que tenha somente horario de inicio.
     public Task(String name, String startTime){
         this.name = name;
         this.startTime = LocalTime.parse(startTime);
@@ -45,14 +47,14 @@ public class Task {
     @Override
     public String toString(){
         try{
-            if(singleTime){
+            if(singleTime){ // Realiza as verificações para caso a hora de incio esteja em formato errado
                 if(startTime != null){
                     return name + " as " + startTime;
                 } else{
                     throw new IllegalStateException("Hora de incio de forma Errada");
                 }
                 
-            } else{
+            } else{ // Realiza as verificações para caso as horas de incio e fim estejam em formato errado
                 if(startTime != null & endTime != null){
                     return name + " as " + startTime + " - " + endTime;
                 } else{
