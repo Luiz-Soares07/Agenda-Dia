@@ -1,6 +1,9 @@
 package views;
 
 import javax.swing.*;
+
+import controller.TaskManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 // import java.util.concurrent.Flow;
 
 public class MenuScreen extends JFrame{
+    protected TaskManager taskManager = new TaskManager();
 
 
     public MenuScreen(){
@@ -46,7 +50,7 @@ public class MenuScreen extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 dispose();
-                new UserNameScreen(); //Muda a tela para o campo de solicitação do nome de usuario
+                new UserNameScreen(taskManager); //Muda a tela para o campo de solicitação do nome de usuario
             }
         });
 

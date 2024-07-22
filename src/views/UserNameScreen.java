@@ -3,13 +3,19 @@ package views;
 import models.User;
 
 import javax.swing.*;
+
+import controller.TaskManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserNameScreen extends JFrame{
-    public UserNameScreen(){
+    protected TaskManager taskManager;
+    public UserNameScreen(TaskManager taskManager){
         super("Digite o seu nome");
+
+        this.taskManager = taskManager;
         setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
@@ -27,7 +33,7 @@ public class UserNameScreen extends JFrame{
                 dispose(); //Fecha a tela atual
 
                 User usuario = new User(name);
-                new OptionsMenuScreen(usuario);
+                new OptionsMenuScreen(usuario, taskManager);
             }
 
         });

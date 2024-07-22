@@ -1,17 +1,22 @@
 package views;
 
 import javax.swing.JFrame;
+// import views.*;
 // import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import controller.TaskManager;
 
 import models.User;
 
 public class OptionsMenuScreen extends JFrame{
-    public OptionsMenuScreen(User usuario){
+    protected TaskManager taskManager = new TaskManager();
+    public OptionsMenuScreen(User usuario, TaskManager taskManager){
         super("Bem vindo " + usuario);
+
+        this.taskManager = taskManager;
 
         setResizable(false);
         setLayout(new BorderLayout());
@@ -45,22 +50,20 @@ public class OptionsMenuScreen extends JFrame{
     private void optionSelected(String opcao){
         switch (opcao){
             case "Inserir Tarefa":
-                new InsertTask();
+                new InsertTask(taskManager);
                 break;
             case "Editar Tarefa":
                 new EditTask();
                 break;
             case "Remover Tarefa":
-                new RemoveTask();
+                new RemoveTask(taskManager);
                 break;
             case "Vizualizar Tarefas":
                 new ViewTasks();
                 break;
             case "Sair":
-                dispose();
+                System.exit(0);
                 break;
-            default:
-                System.out.println("Opçao errada");
         }
     }
 }
