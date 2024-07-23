@@ -11,26 +11,28 @@ import controller.TaskManager;
 
 import models.User;
 
-public class OptionsMenuScreen extends JFrame{
+public class OptionsMenuScreen extends JFrame {
     protected TaskManager taskManager = new TaskManager();
-    public OptionsMenuScreen(User usuario, TaskManager taskManager){
+    protected User usuario;
+
+    public OptionsMenuScreen(User usuario, TaskManager taskManager) {
         super("Bem vindo " + usuario);
 
         this.taskManager = taskManager;
+        this.usuario = usuario;
 
         setResizable(false);
         setLayout(new BorderLayout());
 
-        String[] opcoes = {"Inserir Tarefa", "Editar Tarefa","Remover Tarefa","Visualizar Tarefas","Sair"};
+        String[] opcoes = { "Inserir Tarefa", "Editar Tarefa", "Remover Tarefa", "Visualizar Tarefas", "Sair" };
 
+        JPanel panelMenu = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
-        JPanel panelMenu = new JPanel(new FlowLayout(FlowLayout.CENTER,10,20));
-
-        for(String opcao: opcoes){
+        for (String opcao : opcoes) {
             JButton button = new JButton(opcao);
             button.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e){
+                public void actionPerformed(ActionEvent e) {
                     dispose();
                     optionSelected(opcao);
                 }
@@ -43,23 +45,21 @@ public class OptionsMenuScreen extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 350);
 
-
-        
     }
 
-    private void optionSelected(String opcao){
-        switch (opcao){
+    private void optionSelected(String opcao) {
+        switch (opcao) {
             case "Inserir Tarefa":
-                new InsertTask(taskManager);
+                new InsertTask(usuario, taskManager);
                 break;
             case "Editar Tarefa":
-                new EditTask();
+                new EditTask(usuario, taskManager);
                 break;
             case "Remover Tarefa":
-                new RemoveTask(taskManager);
+                new RemoveTask(usuario, taskManager);
                 break;
-            case "Vizualizar Tarefas":
-                new ViewTasks();
+            case "Visualizar Tarefas":
+                new ViewTasks(usuario, taskManager);
                 break;
             case "Sair":
                 System.exit(0);

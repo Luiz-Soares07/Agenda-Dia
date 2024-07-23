@@ -1,9 +1,10 @@
+
 // import controller.InsertTaskManager;
 // import controller.RemoveTaskManager;
 import views.MenuScreen;
 // import views.*;
 
-public class Agenda{
+public class Agenda {
 
     public static void main(String[] args) {
         // InsertTaskManager newTask = new InsertTaskManager();
@@ -23,12 +24,9 @@ public class Agenda{
         // newRemoveTask.listTasks();
 
         new MenuScreen();
+        // new ViewTasks();
 
-
-        
         // new UserNameScreen();
 
-
-       
     }
 }

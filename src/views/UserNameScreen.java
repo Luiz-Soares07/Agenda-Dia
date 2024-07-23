@@ -10,9 +10,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserNameScreen extends JFrame{
+public class UserNameScreen extends JFrame {
     protected TaskManager taskManager;
-    public UserNameScreen(TaskManager taskManager){
+    protected User usuario;
+
+    public UserNameScreen(TaskManager taskManager) {
+
         super("Digite o seu nome");
 
         this.taskManager = taskManager;
@@ -28,11 +31,11 @@ public class UserNameScreen extends JFrame{
 
         btnPronto.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 String name = inputName.getText();
-                dispose(); //Fecha a tela atual
+                dispose(); // Fecha a tela atual
 
-                User usuario = new User(name);
+                usuario = new User(name);
                 new OptionsMenuScreen(usuario, taskManager);
             }
 
@@ -43,7 +46,7 @@ public class UserNameScreen extends JFrame{
         panel.add(btnPronto);
 
         add(panel, BorderLayout.CENTER);
- 
+
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -11,20 +11,20 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 // import java.util.concurrent.Flow;
 
-public class MenuScreen extends JFrame{
+public class MenuScreen extends JFrame {
     protected TaskManager taskManager = new TaskManager();
 
+    public MenuScreen() {
 
-    public MenuScreen(){
-       
-        super("Sistema de Gerenciamento de Tarefas"); //Titulo da Janela
+        super("Sistema de Gerenciamento de Tarefas"); // Titulo da Janela
         setResizable(false);
         // setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
         JLabel titleLabel = new JLabel("<html>Bem vindo ao Sistema de Gerenciamento de tarefas do dia " +
-            LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-            "<br/><br/>Por favor escolha entre uma das opções abaixo:</html>"); //Altera o formato da Data para "dd/mm/yyyy"
+                LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                "<br/><br/>Por favor escolha entre uma das opções abaixo:</html>"); // Altera o formato da Data para
+                                                                                    // "dd/mm/yyyy"
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
@@ -37,27 +37,26 @@ public class MenuScreen extends JFrame{
 
         btnEntrar.setPreferredSize(new Dimension(150, 75));
         btnSair.setPreferredSize(new Dimension(150, 75));
-        
-        //Adiciona os botões ao componente panelMenu
+
+        // Adiciona os botões ao componente panelMenu
         panelMenu.add(btnEntrar);
         panelMenu.add(btnSair);
 
         add(panelMenu, BorderLayout.CENTER);
 
-
-        //Evento ao clicar no botão Entrar
+        // Evento ao clicar no botão Entrar
         btnEntrar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dispose();
-                new UserNameScreen(taskManager); //Muda a tela para o campo de solicitação do nome de usuario
+                new UserNameScreen(taskManager); // Muda a tela para o campo de solicitação do nome de usuario
             }
         });
 
-        //Evento para Sair do sistema
+        // Evento para Sair do sistema
         btnSair.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
@@ -66,8 +65,6 @@ public class MenuScreen extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 350);
 
-        
     }
 
-    
 }
