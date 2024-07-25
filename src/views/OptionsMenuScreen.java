@@ -1,8 +1,6 @@
 package views;
 
 import javax.swing.JFrame;
-// import views.*;
-// import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

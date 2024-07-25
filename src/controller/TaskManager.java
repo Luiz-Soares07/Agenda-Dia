@@ -27,11 +27,12 @@ public class TaskManager {
 
     }
 
+    //Metodos para editar uma task
+
     public boolean editTask(int id, String name, String startTime, String endTime){
-        int index = id - 1;
-        if((index >= 0) && index <= tasks.size()){
+        int index = id - 1; // Retira 1 do ID para acessar o item da lista
+        if((index >= 0) && (index <= tasks.size())){
             try{
-                // Task existingTask = tasks.get(index);
                 Task uptadedTask = new Task(name, startTime, endTime);
 
                 for(int i = 0; i < tasks.size(); i++){
@@ -58,7 +59,7 @@ public class TaskManager {
 
     public boolean editTask(int id, String name, String startTime){
         int index = id - 1;
-        if((index >= 0) && index <= tasks.size()){
+        if((index >= 0) && (index <= tasks.size())){
             try{
                 // Task existingTask = tasks.get(index);
                 Task uptadedTask = new Task(name, startTime);

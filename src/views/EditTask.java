@@ -1,5 +1,6 @@
 package views;
 
+
 import javax.swing.*;
 
 import controller.TaskManager;
@@ -7,14 +8,15 @@ import models.User;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-// import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
+
 import java.awt.event.ActionListener;
 
 public class EditTask extends JFrame {
     protected TaskManager taskManager;
     protected User usuario;
     protected JTextArea textArea = new JTextArea();
+    protected CardLayout cardLayout;
+    protected JPanel cardPanel; 
 
     public EditTask(User usuario, TaskManager taskManager) {
         super("Editar Tarefas");
@@ -24,6 +26,9 @@ public class EditTask extends JFrame {
 
         setResizable(false);
         setLayout(new BorderLayout());
+
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
 
         JPanel editPanelSelected = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
@@ -51,7 +56,9 @@ public class EditTask extends JFrame {
         editPanelSelected.add(new JScrollPane(textArea));
         editPanelSelected.add(toGoBack);
 
-        add(editPanelSelected);
+        cardPanel.add(editPanelSelected, "SelectPanel");
+
+        
 
         idButton.addActionListener(new ActionListener() {
             @Override
@@ -62,8 +69,8 @@ public class EditTask extends JFrame {
                     Integer id = Integer.parseInt(idString);
                
 
-                    editPanelSelected.removeAll();
                     showEditableTaks(id);
+                    cardLayout.show(cardPanel, "EditPanel");
 
 
                 } catch (NumberFormatException error) {
@@ -74,9 +81,7 @@ public class EditTask extends JFrame {
             }
         });
 
-        
-
-        
+        add(cardPanel);
 
         uptatedTaks();
 
@@ -124,11 +129,18 @@ public class EditTask extends JFrame {
                 String startTime = startTimeField.getText();
                 String endTime = endTimeField.getText();
 
-                boolean success = taskManager.editTask(id,nameString, startTime, endTime);
+                boolean success;
+
+                if(endTime.isEmpty()){
+                    success = taskManager.editTask(id, nameString, startTime);
+                } else{
+                    success = taskManager.editTask(id,nameString, startTime, endTime);
+                }
 
                 if (success){
                     uptatedTaks();
                     JOptionPane.showMessageDialog(null, "Tarefa Editada com sucesso");
+                    cardLayout.show(cardPanel, "SelectPanel");  
                 } else{
                     JOptionPane.showMessageDialog(null, "Erro ao editar tarefa!");
                 }
@@ -140,6 +152,16 @@ public class EditTask extends JFrame {
 
             
         });
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cardLayout.show(cardPanel, "SelectPanel");
+            }
+        });
+
+        cardPanel.add(editPanel, "EditPanel");
+        cardLayout.show(cardPanel, "EditPanel");
 
 
 
